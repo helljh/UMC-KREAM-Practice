@@ -36,6 +36,7 @@ class LoginView: UIView {
         textField.layer.cornerRadius = 15
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor(named: "loginTextFieldBorder")?.cgColor
+        textField.isSecureTextEntry = true
         textField.setLeftPaddingPoints(16)
         textField.setRightPaddingPoints(16)
         return textField
