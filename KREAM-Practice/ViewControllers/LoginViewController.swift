@@ -15,7 +15,18 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.view = loginView
         self.view.backgroundColor = .white
+        
+        self.loginView.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+
+    }
     
+    @objc
+    private func loginButtonTapped(){
+        let viewController = MainViewController()
+        
+        viewController.modalPresentationStyle = .fullScreen
+        
+        present(viewController, animated: true)
     }
     
 

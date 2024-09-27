@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LoginView: UIView {
     
@@ -16,8 +17,17 @@ class LoginView: UIView {
         return imageView
     }()
     
+    private let emailLabel: UILabel = {
+        let label = UILabel()
+        label.text = "이메일 주소"
+        label.font = UIFont.systemFont(ofSize: 12) // 라벨 폰트 크기 설정
+        label.textColor = .gray // 라벨 색상 설정
+        return label
+    }()
+    
     let emailTextField: UITextField = {
         let textField = UITextField()
+        
         textField.placeholder = "예) kream@kream.co.kr"
         textField.borderStyle = .none
         textField.layer.cornerRadius = 15
@@ -26,6 +36,14 @@ class LoginView: UIView {
         textField.setLeftPaddingPoints(16)
         textField.setRightPaddingPoints(16)
         return textField
+    }()
+    
+    private let passwordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "비밀번호"
+        label.font = UIFont.systemFont(ofSize: 12) // 라벨 폰트 크기 설정
+        label.textColor = .gray // 라벨 색상 설정
+        return label
     }()
     
     let passwordTextField: UITextField = {
@@ -160,8 +178,19 @@ class LoginView: UIView {
         super.init(frame: frame)
         addSubview(logoView)
         
-        let loginStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
+        let emailStackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField])
+        emailStackView.axis = .vertical
+        emailStackView.spacing = 8
+        emailStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTextField])
+        passwordStackView.axis = .vertical
+        passwordStackView.spacing = 8
+        passwordStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let loginStackView = UIStackView(arrangedSubviews: [emailStackView, passwordStackView, loginButton])
         loginStackView.axis = .vertical
+        loginStackView.distribution = .fill
         loginStackView.spacing = 17
         loginStackView.backgroundColor = .none
         loginStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -173,30 +202,44 @@ class LoginView: UIView {
         oauthLoginStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(oauthLoginStackView)
         
-        NSLayoutConstraint.activate([
-            logoView.topAnchor.constraint(equalTo: topAnchor, constant: 126),
-            logoView.leftAnchor.constraint(equalTo: leftAnchor, constant: 53),
-            logoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -53),
-            
-            emailTextField.heightAnchor.constraint(equalToConstant: 35),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 35),
-            
-            loginButton.heightAnchor.constraint(equalToConstant: 38),
-            
-            loginStackView.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 87),
-            loginStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 45),
-            loginStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -45),
-            
-            kakaoLoginButton.heightAnchor.constraint(equalToConstant: 40),
-            appleLoginButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            oauthLoginStackView.topAnchor.constraint(equalTo: loginStackView.bottomAnchor, constant: 87),
-            oauthLoginStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 47.5),
-            oauthLoginStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -47.5),
-        ])
         
+        logoView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(126)
+            $0.left.equalToSuperview().offset(53)
+        }
         
+        emailTextField.snp.makeConstraints{
+            $0.height.equalTo(35)
+        }
         
+        passwordTextField.snp.makeConstraints{
+            $0.height.equalTo(35)
+        }
+        
+        loginButton.snp.makeConstraints{
+            $0.height.equalTo(38)
+        }
+        
+        loginStackView.snp.makeConstraints{
+            $0.top.equalTo(logoView.snp.bottom).offset(87)
+            $0.left.equalToSuperview().offset(45)
+            $0.right.equalToSuperview().inset(45)
+        }
+        
+        kakaoLoginButton.snp.makeConstraints{
+            $0.height.equalTo(40)
+        }
+        
+        appleLoginButton.snp.makeConstraints{
+            $0.height.equalTo(40)
+        }
+        
+        oauthLoginStackView.snp.makeConstraints{
+            $0.top.equalTo(loginStackView.snp.bottom).offset(87)
+            $0.left.equalToSuperview().offset(47.5)
+            $0.right.equalToSuperview().inset(47.5)
+        }
+
     }
     
     required init?(coder: NSCoder) {
@@ -207,16 +250,3 @@ class LoginView: UIView {
     
 }
 
-extension UITextField {
-    func setLeftPaddingPoints(_ amount:CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
-    }
-    
-    func setRightPaddingPoints(_ amount:CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))
-        self.rightView = paddingView
-        self.rightViewMode = .always
-    }
-}
