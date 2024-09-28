@@ -7,91 +7,72 @@
 
 import UIKit
 import SnapKit
+import Then
 
 class MyView: UIView{
-    private lazy var settingButton: UIButton = {
-        let button = UIButton(type: .system)
-        
+    private lazy var settingButton = UIButton().then{
         var configuration = UIButton.Configuration.plain()
         configuration.baseForegroundColor = .black
-        
-        
+    
         let image = UIImage(named: "setting")?.resized(to: CGSize(width: 25, height: 25))
         configuration.image = image
         
-        button.configuration = configuration
-        return button
-    }()
+        $0.configuration = configuration
+    }
     
-    private lazy var cameraButton: UIButton = {
-        let button = UIButton(type: .system)
-        
+    private lazy var cameraButton = UIButton().then{
         var configuration = UIButton.Configuration.plain()
         configuration.baseForegroundColor = .black
         
         let image = UIImage(named: "camera")?.resized(to: CGSize(width: 25, height: 25))
         configuration.image = image
         
-        button.configuration = configuration
-        
-        return button
-    }()
+        $0.configuration = configuration
+    }
     
-    private let profileImage: UIImageView = {
+    private let profileImage = UIImageView().then{
         let image = UIImage(named: "profile")
-        let imageView = UIImageView()
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 45
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+        $0.image = image
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 45
+        $0.clipsToBounds = true
+    }
     
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "지누/iOS 챌린저"
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = .black
-        return label
-    }()
+    private let nameLabel = UILabel().then{
+        $0.text = "지누/iOS 챌린저"
+        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.textColor = .black
+    }
     
-    private let followerText: UILabel = {
-        let label = UILabel()
-        label.text = "팔로워 326"
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .black
-        return label
-    }()
+    private let followerText = UILabel().then{
+        $0.text = "팔로워 326"
+        $0.font = .systemFont(ofSize: 12, weight: .medium)
+        $0.textColor = .black
+    }
     
-    private let followingText: UILabel = {
-        let label = UILabel()
-        label.text = "팔로잉 20"
-        label.font = .systemFont(ofSize: 12, weight: .medium)
-        label.textColor = .black
-        return label
-    }()
+    private let followingText = UILabel().then{
+        $0.text = "팔로잉 20"
+        $0.font = .systemFont(ofSize: 12, weight: .medium)
+        $0.textColor = .black
+    }
     
-    let profileManageBtn: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("프로필 관리", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 9)
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 0.8
-        button.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
-        return button
-    }()
+    let profileManageBtn = UIButton().then{
+        $0.setTitle("프로필 관리", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 9)
+        $0.layer.cornerRadius = 8
+        $0.layer.borderWidth = 0.8
+        $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+    }
     
-    let profileShareBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle("프로필 공유", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 9)
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 0.8
-        button.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
-        return button
-    }()
+    let profileShareBtn = UIButton().then{
+        $0.setTitle("프로필 공유", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 9)
+        $0.layer.cornerRadius = 8
+        $0.layer.borderWidth = 0.8
+        $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -149,9 +130,6 @@ class MyView: UIView{
             $0.left.equalToSuperview().offset(32.5)
             $0.right.equalToSuperview().inset(32.5)
         }
-        
-    
-    
     }
 
     

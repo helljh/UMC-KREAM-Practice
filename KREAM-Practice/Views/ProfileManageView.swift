@@ -73,7 +73,14 @@ class ProfileManageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(profileImage)
+        //addSubview(profileImage)
+        
+        let profileImageHorizontal = UIStackView(arrangedSubviews: [profileImage])
+        profileImageHorizontal.axis = .horizontal
+        profileImageHorizontal.distribution = .fillProportionally
+        profileImageHorizontal.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileImageHorizontal)
+        
         
         let emailTextFieldHorizontal = UIStackView(arrangedSubviews: [emailTextField, emailModifyButton])
         emailTextFieldHorizontal.axis = .horizontal
@@ -102,15 +109,22 @@ class ProfileManageView: UIView {
         addSubview(modifyArea)
         
         profileImage.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(144)
-            $0.left.equalToSuperview().offset(151)
+//            $0.top.equalToSuperview().offset(144)
+//            $0.left.equalToSuperview().offset(151)
+//            $0.right.equalToSuperview().inset(151)
             $0.height.equalTo(90)
             $0.width.equalTo(90)
+        }
+        
+        profileImageHorizontal.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(144)
+            $0.centerX.equalToSuperview()
         }
         
         modifyArea.snp.makeConstraints{
             $0.top.equalTo(profileImage.snp.bottom).offset(20)
             $0.left.equalToSuperview().offset(27)
+            $0.right.equalToSuperview().inset(17)
         }
         
         emailTextField.snp.makeConstraints{
