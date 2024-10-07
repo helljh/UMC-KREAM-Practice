@@ -24,6 +24,10 @@
 		D158974C2CA2D72E00CEDA2A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D158974B2CA2D72E00CEDA2A /* SnapKit */; };
 		D15897502CA39F4F00CEDA2A /* ProfileManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D158974F2CA39F4F00CEDA2A /* ProfileManageViewController.swift */; };
 		D15897522CA3AEE100CEDA2A /* ProfileManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15897512CA3AEE100CEDA2A /* ProfileManageView.swift */; };
+		D198A0F32CAFDE7700DAE390 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F22CAFDE7700DAE390 /* SavedView.swift */; };
+		D198A0F52CAFDE9900DAE390 /* SavedItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F42CAFDE8900DAE390 /* SavedItemModel.swift */; };
+		D198A0F82CAFE44100DAE390 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */; };
+		D198A0FA2CB164AC00DAE390 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */; };
 		D1D746832CA68E7D003CAE50 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = D1D746822CA68E7D003CAE50 /* Then */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +50,10 @@
 		D15897482CA2D68200CEDA2A /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		D158974F2CA39F4F00CEDA2A /* ProfileManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManageViewController.swift; sourceTree = "<group>"; };
 		D15897512CA3AEE100CEDA2A /* ProfileManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManageView.swift; sourceTree = "<group>"; };
+		D198A0F22CAFDE7700DAE390 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		D198A0F42CAFDE8900DAE390 /* SavedItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemModel.swift; sourceTree = "<group>"; };
+		D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewCell.swift; sourceTree = "<group>"; };
+		D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 		D142793A2CA127FD00D6853C /* KREAM-Practice */ = {
 			isa = PBXGroup;
 			children = (
+				D198A0F62CAFE42500DAE390 /* Cells */,
 				D14279522CA1288B00D6853C /* ViewControllers */,
 				D14279512CA1288100D6853C /* Views */,
 				D142794F2CA1287200D6853C /* Models */,
@@ -95,6 +104,8 @@
 		D142794F2CA1287200D6853C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */,
+				D198A0F42CAFDE8900DAE390 /* SavedItemModel.swift */,
 				D14279532CA128B200D6853C /* LoginModel.swift */,
 			);
 			path = Models;
@@ -106,6 +117,7 @@
 				D14279552CA128E200D6853C /* LoginView.swift */,
 				D15897482CA2D68200CEDA2A /* MyView.swift */,
 				D15897512CA3AEE100CEDA2A /* ProfileManageView.swift */,
+				D198A0F22CAFDE7700DAE390 /* SavedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +135,14 @@
 				D158974F2CA39F4F00CEDA2A /* ProfileManageViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D198A0F62CAFE42500DAE390 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,16 +221,20 @@
 			files = (
 				D15897492CA2D68200CEDA2A /* MyView.swift in Sources */,
 				D14279402CA127FD00D6853C /* LoginViewController.swift in Sources */,
+				D198A0F52CAFDE9900DAE390 /* SavedItemModel.swift in Sources */,
 				D14279542CA128B200D6853C /* LoginModel.swift in Sources */,
 				D15897432CA2CCAD00CEDA2A /* ShopViewController.swift in Sources */,
 				D15897502CA39F4F00CEDA2A /* ProfileManageViewController.swift in Sources */,
 				D15897522CA3AEE100CEDA2A /* ProfileManageView.swift in Sources */,
 				D142793C2CA127FD00D6853C /* AppDelegate.swift in Sources */,
+				D198A0FA2CB164AC00DAE390 /* UserDefaultsModel.swift in Sources */,
 				D158973B2CA2CC3E00CEDA2A /* MainViewController.swift in Sources */,
 				D15897402CA2CC9800CEDA2A /* StyleViewController.swift in Sources */,
 				D15897472CA2CCC200CEDA2A /* MyViewController.swift in Sources */,
 				D14279562CA128E200D6853C /* LoginView.swift in Sources */,
+				D198A0F32CAFDE7700DAE390 /* SavedView.swift in Sources */,
 				D158973E2CA2CC8E00CEDA2A /* HomeViewController.swift in Sources */,
+				D198A0F82CAFE44100DAE390 /* SavedTableViewCell.swift in Sources */,
 				D15897452CA2CCB600CEDA2A /* SavedViewController.swift in Sources */,
 				D142793E2CA127FD00D6853C /* SceneDelegate.swift in Sources */,
 			);

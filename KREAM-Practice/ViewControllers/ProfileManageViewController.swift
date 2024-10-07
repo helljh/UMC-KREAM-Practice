@@ -16,10 +16,27 @@ class ProfileManageViewController: UIViewController {
     private var isEmailModifyButtonTapped: Bool = false
     private var isPwModifyButtonTapped: Bool = false
     
+    public var profileImage: UIImage?
+    
+    private let userDefaultsModel = UserDefaultsModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = profileManageView
+        
         setupNavigationBar()
+        
+        if let image = profileImage{
+            profileManageView.profileImage.image = image
+        }
+        
+        if let user = userDefaultsModel.loadUserInfo(){
+            profileManageView.emailTextField.text = user.email
+            profileManageView.pwTextField.text = user.password
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     private func setupNavigationBar() {
@@ -31,20 +48,49 @@ class ProfileManageViewController: UIViewController {
     
     @objc private func backTapped() {
         // 뒤로가기 버튼 클릭 시의 동작
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
     
     @objc private func emailModifyTapped() {
         isEmailModifyButtonTapped = !isEmailModifyButtonTapped
+        profileManageView.emailTextField.isUserInteractionEnabled = isEmailModifyButtonTapped
+        
         let title = isEmailModifyButtonTapped ? "확인" : "변경"
         profileManageView.emailModifyButton.setTitle(title, for: .normal)
         
+        if isEmailModifyButtonTapped {
+            return
+        }
+        
+        // "확인"을 눌렀을 때 입력된 이메일을 가져와서 기존 이메일과 비교
+        if let newEmail = profileManageView.emailTextField.text, !newEmail.isEmpty {
+            if let currentUser = userDefaultsModel.loadUserInfo(), newEmail == currentUser.email {
+                // 동일한 이메일인 경우 경고 메시지 표시
+                let alert = UIAlertController(title: "경고", message: "기존의 이메일과 동일합니다.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                present(alert, animated: true)
+            } else {
+                // 이메일이 다르면 업데이트
+                userDefaultsModel.updateUserEmail(newEmail)
+            }
+        }
     }
     
     @objc private func pwModifyTapped() {
         isPwModifyButtonTapped = !isPwModifyButtonTapped
+        profileManageView.pwTextField.isUserInteractionEnabled = isPwModifyButtonTapped
+        
         let title = isPwModifyButtonTapped ? "확인" : "변경"
         profileManageView.pwModifyButton.setTitle(title, for: .normal)
+        
+        if let newPassword = profileManageView.pwTextField.text, newPassword != userDefaultsModel.loadUserInfo()!.password{
+            userDefaultsModel.updateUserPassword(newPassword)
+        }
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
+
 

@@ -11,8 +11,8 @@ import Then
 
 class ProfileManageView: UIView {
     
-    private let profileImage = UIImageView().then{
-        let image = UIImage(named: "profile")
+    public let profileImage = UIImageView().then{
+        let image = UIImage(systemName: "person.crop.circle")
         $0.image = image
         $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 45
@@ -29,13 +29,14 @@ class ProfileManageView: UIView {
         $0.font = .systemFont(ofSize: 14)
     }
     
-    private let emailTextField = UITextField().then{
+    public let emailTextField = UITextField().then{
         let textField = UITextField()
         $0.text = "example@naver.com"
         $0.borderStyle = .none
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+        $0.isUserInteractionEnabled = false
         $0.setLeftPaddingPoints(16)
         $0.setRightPaddingPoints(16)
     }
@@ -46,6 +47,7 @@ class ProfileManageView: UIView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         $0.layer.cornerRadius = 6
         $0.layer.borderWidth = 1
+        
     }
     
     private let userPwLabel =  UILabel().then {
@@ -53,12 +55,13 @@ class ProfileManageView: UIView {
         $0.font = .systemFont(ofSize: 14)
     }
     
-    private let pwTextField = UITextField().then{
+    public let pwTextField = UITextField().then{
         $0.text = "*****************"
         $0.borderStyle = .none
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+        $0.isUserInteractionEnabled = false
         $0.setLeftPaddingPoints(16)
         $0.setRightPaddingPoints(16)
     }

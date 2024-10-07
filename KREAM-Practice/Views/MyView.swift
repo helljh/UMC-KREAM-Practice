@@ -30,7 +30,7 @@ class MyView: UIView{
         $0.configuration = configuration
     }
     
-    private let profileImage = UIImageView().then{
+    public let profileImage = UIImageView().then{
         let image = UIImage(named: "profile")
         $0.image = image
         $0.contentMode = .scaleAspectFill
@@ -62,7 +62,7 @@ class MyView: UIView{
         $0.titleLabel?.font = .systemFont(ofSize: 9)
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 0.8
-        $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "D5D5D5")?.cgColor
     }
     
     let profileShareBtn = UIButton().then{
@@ -71,7 +71,7 @@ class MyView: UIView{
         $0.titleLabel?.font = .systemFont(ofSize: 9)
         $0.layer.cornerRadius = 8
         $0.layer.borderWidth = 0.8
-        $0.layer.borderColor = UIColor(named: "myButtonBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "D5D5D5")?.cgColor
     }
 
     override init(frame: CGRect) {

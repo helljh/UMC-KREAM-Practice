@@ -14,9 +14,10 @@ class MyViewController: UIViewController {
     
     @objc
     private func manageBtnTapped() {
-        print("Button tapped!")  // 로그 출력으로 버튼 클릭 확인
-        let nextVC = ProfileManageViewController()
-        navigationController?.pushViewController(nextVC, animated: false)
+        let profileManageVC = ProfileManageViewController()
+        profileManageVC.profileImage = myView.profileImage.image!
+        //print("Button tapped!")  // 로그 출력으로 버튼 클릭 확인
+        navigationController?.pushViewController(profileManageVC, animated: false)
         
     }
     

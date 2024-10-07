@@ -27,7 +27,7 @@ class LoginView: UIView {
         $0.borderStyle = .none
         $0.layer.cornerRadius = 15
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor(named: "loginTextFieldBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "A2A2A2")?.cgColor
         $0.setLeftPaddingPoints(16)
         $0.setRightPaddingPoints(16)
     }
@@ -44,7 +44,7 @@ class LoginView: UIView {
         $0.borderStyle = .none
         $0.layer.cornerRadius = 15
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor(named: "loginTextFieldBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "A2A2A2")?.cgColor
         $0.isSecureTextEntry = true
         $0.setLeftPaddingPoints(16)
         $0.setRightPaddingPoints(16)
@@ -54,7 +54,7 @@ class LoginView: UIView {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "로그인"
         configuration.titleAlignment = .center
-        configuration.baseBackgroundColor = UIColor(named: "loginButton")
+        configuration.baseBackgroundColor = UIColor(named: "D9D9D9")
         configuration.baseForegroundColor = .white
         $0.configuration = configuration
         $0.layer.cornerRadius = 8
@@ -89,7 +89,7 @@ class LoginView: UIView {
         $0.configuration = configuration
         
         $0.layer.cornerRadius = 10
-        $0.layer.borderColor = UIColor(named: "oauthTextFieldBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "D3D3D3")?.cgColor
         $0.layer.borderWidth = 1
         
         // 버튼에 두 개의 이미지 추가
@@ -152,7 +152,7 @@ class LoginView: UIView {
         ])
         
         $0.layer.cornerRadius = 10
-        $0.layer.borderColor = UIColor(named: "oauthTextFieldBorder")?.cgColor
+        $0.layer.borderColor = UIColor(named: "D3D3D3")?.cgColor
         $0.layer.borderWidth = 1
     }
     
