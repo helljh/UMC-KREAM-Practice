@@ -18,11 +18,6 @@ class LoginViewController: UIViewController {
         self.view = loginView
         self.view.backgroundColor = .white
         
-        
-        
-        
-        
-        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
