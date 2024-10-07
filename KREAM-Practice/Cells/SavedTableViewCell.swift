@@ -48,17 +48,21 @@ class SavedTableViewCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 14, weight: .semibold)
     }
     
+    private lazy var saveButton = UIButton().then{
+        $0.setImage(UIImage(named: "saveButton"), for: .normal)
+    }
+    
     private func setView(){
         self.addSubview(saveItemImageView)
         self.addSubview(savedItemName)
         self.addSubview(savedItemPrice)
+        self.addSubview(saveButton)
     }
     
     private func setConstraints(){
         saveItemImageView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(13)
             $0.left.equalToSuperview().offset(13)
-            $0.bottom.equalToSuperview().inset(14)
             $0.height.equalTo(72)
             $0.width.equalTo(72)
         }
@@ -72,6 +76,13 @@ class SavedTableViewCell: UITableViewCell {
         savedItemPrice.snp.makeConstraints{
             $0.right.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(17)
+        }
+        
+        saveButton.snp.makeConstraints{
+            $0.height.equalTo(18)
+            $0.width.equalTo(14)
+            $0.top.equalToSuperview().offset(18)
+            $0.right.equalToSuperview().inset(17)
         }
     }
     

@@ -22,7 +22,7 @@ class LoginView: UIView {
         $0.textColor = .gray // 라벨 색상 설정
     }
     
-    let emailTextField = UITextField().then{
+    public let emailTextField = UITextField().then{
         $0.placeholder = "예) kream@kream.co.kr"
         $0.borderStyle = .none
         $0.layer.cornerRadius = 15
@@ -38,7 +38,7 @@ class LoginView: UIView {
         $0.textColor = .gray // 라벨 색상 설정
     }
     
-    let passwordTextField = UITextField().then{
+    public let passwordTextField = UITextField().then{
         $0.placeholder = "비밀번호를 입력해주세요"
         $0.textColor = UIColor(named: "placeholder")
         $0.borderStyle = .none

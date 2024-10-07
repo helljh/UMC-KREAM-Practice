@@ -19,20 +19,20 @@ class MainViewController: UITabBarController {
         view.backgroundColor = .white
         
         
-//        self.setValue(CustomTabBar(), forKey: "tabBar")
-//        
-//        if #available(iOS 13.0, *) {
-//            let tabBarAppearance = UITabBarAppearance()
-//            tabBarAppearance.backgroundColor = .red // 배경색 설정
-//
-//            tabBar.standardAppearance = tabBarAppearance
-//            if #available(iOS 15.0, *) {
-//                tabBar.scrollEdgeAppearance = tabBarAppearance
-//            }
-//        } else {
-//            tabBar.barTintColor = .red // 이전 iOS 버전용
-//            tabBar.backgroundImage = UIImage(named: "profile")
-//        }
+        self.setValue(CustomTabBar(), forKey: "tabBar")
+        
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.backgroundColor = .white // 배경색 설정
+
+            tabBar.standardAppearance = tabBarAppearance
+            if #available(iOS 15.0, *) {
+                tabBar.scrollEdgeAppearance = tabBarAppearance
+            }
+        } else {
+            tabBar.barTintColor = .white // 이전 iOS 버전용
+            tabBar.backgroundImage = UIImage(named: "profile")
+        }
         
         self.tabBar.tintColor = .black
         
