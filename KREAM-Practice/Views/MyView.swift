@@ -130,6 +130,11 @@ class MyView: UIView{
             $0.left.equalToSuperview().offset(32.5)
             $0.right.equalToSuperview().inset(32.5)
         }
+        
+        profileManageBtn.snp.makeConstraints{
+            $0.height.equalTo(26)
+            $0.width.equalTo(157)
+        }
     }
 
     

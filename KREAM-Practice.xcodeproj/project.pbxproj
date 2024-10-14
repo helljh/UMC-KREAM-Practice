@@ -29,6 +29,13 @@
 		D198A0F82CAFE44100DAE390 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */; };
 		D198A0FA2CB164AC00DAE390 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */; };
 		D1D746832CA68E7D003CAE50 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = D1D746822CA68E7D003CAE50 /* Then */; };
+		D1E1AB732CB69730009009D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB722CB69730009009D0 /* HomeView.swift */; };
+		D1E1AB752CB6A54A009009D0 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB742CB6A54A009009D0 /* HomeMenuCollectionViewCell.swift */; };
+		D1E1AB772CB6A6FB009009D0 /* HomeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB762CB6A6E2009009D0 /* HomeMenu.swift */; };
+		D1E1AB792CB6B17B009009D0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB782CB6B17B009009D0 /* SearchView.swift */; };
+		D1E1AB7B2CB6B1EE009009D0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7A2CB6B1EE009009D0 /* SearchViewController.swift */; };
+		D1E1AB7D2CBA3919009009D0 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */; };
+		D1E1AB7F2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7E2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +61,13 @@
 		D198A0F42CAFDE8900DAE390 /* SavedItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemModel.swift; sourceTree = "<group>"; };
 		D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewCell.swift; sourceTree = "<group>"; };
 		D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
+		D1E1AB722CB69730009009D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D1E1AB742CB6A54A009009D0 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1E1AB762CB6A6E2009009D0 /* HomeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenu.swift; sourceTree = "<group>"; };
+		D1E1AB782CB6B17B009009D0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D1E1AB7A2CB6B1EE009009D0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		D1E1AB7E2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +118,7 @@
 		D142794F2CA1287200D6853C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1E1AB762CB6A6E2009009D0 /* HomeMenu.swift */,
 				D198A0F92CB164A500DAE390 /* UserDefaultsModel.swift */,
 				D198A0F42CAFDE8900DAE390 /* SavedItemModel.swift */,
 				D14279532CA128B200D6853C /* LoginModel.swift */,
@@ -118,6 +133,8 @@
 				D15897482CA2D68200CEDA2A /* MyView.swift */,
 				D15897512CA3AEE100CEDA2A /* ProfileManageView.swift */,
 				D198A0F22CAFDE7700DAE390 /* SavedView.swift */,
+				D1E1AB722CB69730009009D0 /* HomeView.swift */,
+				D1E1AB782CB6B17B009009D0 /* SearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +150,8 @@
 				D15897442CA2CCB600CEDA2A /* SavedViewController.swift */,
 				D15897462CA2CCC200CEDA2A /* MyViewController.swift */,
 				D158974F2CA39F4F00CEDA2A /* ProfileManageViewController.swift */,
+				D1E1AB7A2CB6B1EE009009D0 /* SearchViewController.swift */,
+				D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -141,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				D198A0F72CAFE44100DAE390 /* SavedTableViewCell.swift */,
+				D1E1AB742CB6A54A009009D0 /* HomeMenuCollectionViewCell.swift */,
+				D1E1AB7E2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -222,21 +243,28 @@
 				D15897492CA2D68200CEDA2A /* MyView.swift in Sources */,
 				D14279402CA127FD00D6853C /* LoginViewController.swift in Sources */,
 				D198A0F52CAFDE9900DAE390 /* SavedItemModel.swift in Sources */,
+				D1E1AB7F2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift in Sources */,
 				D14279542CA128B200D6853C /* LoginModel.swift in Sources */,
 				D15897432CA2CCAD00CEDA2A /* ShopViewController.swift in Sources */,
 				D15897502CA39F4F00CEDA2A /* ProfileManageViewController.swift in Sources */,
 				D15897522CA3AEE100CEDA2A /* ProfileManageView.swift in Sources */,
 				D142793C2CA127FD00D6853C /* AppDelegate.swift in Sources */,
 				D198A0FA2CB164AC00DAE390 /* UserDefaultsModel.swift in Sources */,
+				D1E1AB772CB6A6FB009009D0 /* HomeMenu.swift in Sources */,
+				D1E1AB792CB6B17B009009D0 /* SearchView.swift in Sources */,
 				D158973B2CA2CC3E00CEDA2A /* MainViewController.swift in Sources */,
 				D15897402CA2CC9800CEDA2A /* StyleViewController.swift in Sources */,
+				D1E1AB7B2CB6B1EE009009D0 /* SearchViewController.swift in Sources */,
 				D15897472CA2CCC200CEDA2A /* MyViewController.swift in Sources */,
 				D14279562CA128E200D6853C /* LoginView.swift in Sources */,
 				D198A0F32CAFDE7700DAE390 /* SavedView.swift in Sources */,
 				D158973E2CA2CC8E00CEDA2A /* HomeViewController.swift in Sources */,
+				D1E1AB752CB6A54A009009D0 /* HomeMenuCollectionViewCell.swift in Sources */,
 				D198A0F82CAFE44100DAE390 /* SavedTableViewCell.swift in Sources */,
+				D1E1AB7D2CBA3919009009D0 /* CustomSegmentedControl.swift in Sources */,
 				D15897452CA2CCB600CEDA2A /* SavedViewController.swift in Sources */,
 				D142793E2CA127FD00D6853C /* SceneDelegate.swift in Sources */,
+				D1E1AB732CB69730009009D0 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@ class LoginViewController: UIViewController {
     
     private lazy var loginView: LoginView = LoginView()
     
-    private let userDefaultsModel = UserDefaultsModel()
+    private let loginModel: LoginModel = LoginModel(email: "", password: "");
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,9 @@ class LoginViewController: UIViewController {
         let viewController = MainViewController()
         
         if let email = loginView.emailTextField.text, !email.isEmpty, let password = loginView.passwordTextField.text, !password.isEmpty{
-            let user = User(email: email, password: password)
-            userDefaultsModel.setUserInfo(user)
+            let user = LoginModel(email: email, password: password)
+            loginModel.setEmail(user.email)
+            loginModel.setPassword(user.password)
         }
         
         viewController.modalPresentationStyle = .fullScreen

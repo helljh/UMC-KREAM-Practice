@@ -9,38 +9,179 @@ import UIKit
 import Then
 
 class HomeViewController: UIViewController {
-    private let label = UILabel().then{
-        $0.text = "홈"
-        $0.textColor = .label
+    
+    private let homeView = HomeView()
+    //private let segmentItems: [String] = ["추천","랭킹","발매정보","럭셔리","남성","여성"]
+    //private var previousIndexPath: IndexPath?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 네비게이션 바 숨기기
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 다른 뷰 컨트롤러로 넘어갈 때 네비게이션 바 다시 보이게 하기
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        setupLabel()
-        // Do any additional setup after loading the view.
+        self.view = homeView
+        
+//        homeView.customSeg.dataSource = self
+//        /homeView.customSeg.delegate = self
+//        homeView.customSeg.tag = 1
+        homeView.menuCollectionView.dataSource = self
+//        homeView.menuCollectionView.tag = 2
+        homeView.segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(searchTextFieldTapped))
+        self.homeView.searchTextField.addGestureRecognizer(tapGestureRecognizer)
+        
+        // 초기 셀 선택 및 밑줄 설정
+//        DispatchQueue.main.async {
+//            let initialIndexPath = IndexPath(item: 0, section: 0)
+//            self.collectionView(self.homeView.customSeg, didSelectItemAt: initialIndexPath)
+//            self.homeView.customSeg.selectItem(at: initialIndexPath, animated: false, scrollPosition: [])
+//        }
     }
     
-    private func setupLabel() {
-            view.addSubview(label)
-            label.translatesAutoresizingMaskIntoConstraints = false // Auto Layout 사용 설정
-
-            // 레이블을 뷰의 중앙에 위치시키기 위한 제약 조건 설정
-            NSLayoutConstraint.activate([
-                label.centerXAnchor.constraint(equalTo: view.centerXAnchor), // 가로 중앙 정렬
-                label.centerYAnchor.constraint(equalTo: view.centerYAnchor) // 세로 중앙 정렬
-            ])
+    @objc private func segmentedControlValueChanged(segment: UISegmentedControl) {
+        if segment.selectedSegmentIndex == 0 {
+            homeView.adArea.isHidden = false
+            homeView.menuCollectionView.isHidden = false
+            homeView.divideLine.isHidden = false
+            homeView.emptyLabel.isHidden = true
+        }else{
+            homeView.adArea.isHidden = true
+            homeView.menuCollectionView.isHidden = true
+            homeView.divideLine.isHidden = true
+            homeView.emptyLabel.isHidden = false
         }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        updateUnderlinePosition()
+        
     }
-    */
+    
+    private func updateUnderlinePosition() {
+        homeView.underlineView.backgroundColor = .black
+        let segment = homeView.segmentedControl
+        let segmentIndex = CGFloat(segment.selectedSegmentIndex)
+        let segmentWidth = segment.bounds.size.width / CGFloat(segment.numberOfSegments)
+        let leadingDistance = segmentWidth * segmentIndex
 
+    // 아래는 0.3초의 시간 동안 view의 애니메이션을 주면서 밑줄의 constraints를 업데이트 해준다
+            UIView.animate(withDuration: 0.3, animations: {
+
+                self.homeView.underlineView.snp.updateConstraints {
+                    $0.top.equalTo(segment.snp.bottom)
+                    $0.left.equalTo(segment).inset(leadingDistance)
+                    $0.height.equalTo(2)
+                }
+                self.homeView.segmentedControl.layoutIfNeeded()
+            })
+    }
+    
+    @objc private func searchTextFieldTapped() {
+        let searchVC = SearchViewController()
+        
+        navigationController?.pushViewController(searchVC, animated: false)
+    }
+    
 }
+
+extension HomeViewController: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return HomeMenu.dummy().count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeMenuCollectionViewCell.identifier, for: indexPath) as? HomeMenuCollectionViewCell else { return UICollectionViewCell() }
+        let list = HomeMenu.dummy()
+        
+        cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
+        cell.titleLabel.text = list[indexPath.row].title
+
+        return cell
+    }
+    
+    
+}
+
+// MARK: - UICollection으로 UISegmentedControl 구현
+//extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        switch collectionView.tag{
+//        case 1:
+//            return segmentItems.count
+//        case 2:
+//            return HomeMenu.dummy().count
+//        default:
+//            return 0
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        switch collectionView.tag{
+//        case 1:
+//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomSegCollectionViewCell.identifier, for: indexPath) as? CustomSegCollectionViewCell else { return UICollectionViewCell() }
+//            
+//            cell.titleLabel.text = segmentItems[indexPath.row]
+//            return cell
+//        case 2:
+//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeMenuCollectionViewCell.homeMenuIdentifier, for: indexPath) as? HomeMenuCollectionViewCell else { return UICollectionViewCell() }
+//            
+//            let list = HomeMenu.dummy()
+//            
+//            cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
+//            cell.titleLabel.text = list[indexPath.row].title
+//            
+//            return cell
+//        default:
+//            return UICollectionViewCell()
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        switch collectionView.tag{
+//        case 1:
+//            
+//            // 해당 셀을 찾습니다.
+//            //guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+//            // 이전 선택된 셀의 스타일을 변경
+//            if let previousIndexPath = previousIndexPath, let previousCell = collectionView.cellForItem(at: previousIndexPath) as? CustomSegCollectionViewCell {
+//                previousCell.setSelected(false)
+//            }
+//            
+//            // 새로 선택된 셀의 스타일을 변경
+//            guard let cell = collectionView.cellForItem(at: indexPath) as? CustomSegCollectionViewCell else { return }
+//            cell.setSelected(true)
+//            
+//            cell.isHighlighted = true
+//            // 셀의 프레임을 collectionView의 좌표계에서 view의 좌표계로 변환합니다.
+//            let cellFrameInSuperview = collectionView.convert(cell.frame, to: self.view)
+//            
+//            // 밑줄을 셀의 하단에 맞추어 위치시킵니다.
+//            UIView.animate(withDuration: 0.3) {
+//                self.homeView.underlineView.frame = CGRect(x: cellFrameInSuperview.origin.x, y: cellFrameInSuperview.maxY, width: cell.frame.width, height: 2)
+//                self.homeView.underlineView.isHidden = false
+//            }
+//            // 이전 선택 경로 업데이트
+//            previousIndexPath = indexPath
+//        case 2:
+//            print("menu selected")
+//        default:
+//            break
+//        }
+//    }
+//}
+//
+//extension HomeViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let label = UILabel(frame: CGRect.zero)
+//        label.text = segmentItems[indexPath.item]
+//        label.sizeToFit()
+//        return CGSize(width: label.frame.width, height: 19)
+//    }
+//}

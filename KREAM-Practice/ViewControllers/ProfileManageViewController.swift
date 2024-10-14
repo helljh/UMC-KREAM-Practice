@@ -18,7 +18,7 @@ class ProfileManageViewController: UIViewController {
     
     public var profileImage: UIImage?
     
-    private let userDefaultsModel = UserDefaultsModel()
+    private let loginModel: LoginModel = LoginModel(email: "", password: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +30,9 @@ class ProfileManageViewController: UIViewController {
             profileManageView.profileImage.image = image
         }
         
-        if let user = userDefaultsModel.loadUserInfo(){
-            profileManageView.emailTextField.text = user.email
-            profileManageView.pwTextField.text = user.password
+        if let email = loginModel.loadEmail(), let password = loginModel.loadPassword(){
+            profileManageView.emailTextField.text = email
+            profileManageView.pwTextField.text = password
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -64,14 +64,14 @@ class ProfileManageViewController: UIViewController {
         
         // "확인"을 눌렀을 때 입력된 이메일을 가져와서 기존 이메일과 비교
         if let newEmail = profileManageView.emailTextField.text, !newEmail.isEmpty {
-            if let currentUser = userDefaultsModel.loadUserInfo(), newEmail == currentUser.email {
+            if let oldEmail = loginModel.loadEmail(), newEmail == oldEmail {
                 // 동일한 이메일인 경우 경고 메시지 표시
                 let alert = UIAlertController(title: "경고", message: "기존의 이메일과 동일합니다.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default))
                 present(alert, animated: true)
             } else {
                 // 이메일이 다르면 업데이트
-                userDefaultsModel.updateUserEmail(newEmail)
+                loginModel.setEmail(newEmail)
             }
         }
     }
@@ -89,14 +89,14 @@ class ProfileManageViewController: UIViewController {
         
         // "확인"을 눌렀을 때 입력된 비밀번호를 가져와서 기존 비밀번호와 비교
         if let newPassword = profileManageView.pwTextField.text, !newPassword.isEmpty {
-            if let currentUser = userDefaultsModel.loadUserInfo(), newPassword == currentUser.password {
+            if let oldPassword = loginModel.loadPassword(), newPassword == oldPassword {
                 // 동일한 비밀번호인 경우 경고 메시지 표시
                 let alert = UIAlertController(title: "경고", message: "기존의 비밀번호와 동일합니다.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default))
                 present(alert, animated: true)
             } else {
                 // 비밀번호가 다르면 업데이트
-                userDefaultsModel.updateUserPassword(newPassword)
+                loginModel.setPassword(newPassword)
             }
         }
     }
