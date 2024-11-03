@@ -10,6 +10,7 @@ import Then
 
 class JustDropCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "JustDropCollectionViewCell"
+    private var isSavetapped: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +44,17 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     
     let saveButton = UIButton().then{
         $0.setImage(UIImage(named: "save"), for: .normal)
+        $0.addTarget(JustDropCollectionViewCell.self, action: #selector (saveButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    private func saveButtonTapped(){
+        isSavetapped.toggle()
+        if(isSavetapped){
+            saveButton.setImage(UIImage(named: "save_fill"), for: .normal)
+        }else{
+            saveButton.setImage(UIImage(named: "save_none"), for: .normal)
+        }
     }
     
     let tradeAmountLabel = UILabel().then{
