@@ -44,7 +44,7 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     
     let saveButton = UIButton().then{
         $0.setImage(UIImage(named: "save"), for: .normal)
-        $0.addTarget(JustDropCollectionViewCell.self, action: #selector (saveButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector (saveButtonTapped), for: .touchUpInside)
     }
     
     @objc
