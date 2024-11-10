@@ -23,6 +23,7 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     
     let imageButton = UIButton().then{
         $0.contentMode = .center
+        
     }
     
     
@@ -44,8 +45,14 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     
     let saveButton = UIButton().then{
         $0.setImage(UIImage(named: "save"), for: .normal)
-        $0.addTarget(self, action: #selector (saveButtonTapped), for: .touchUpInside)
     }
+    
+    
+    
+    let itemStackView = UIStackView().then{
+        $0.axis = .vertical
+    }
+    
     
     @objc
     private func saveButtonTapped(){
@@ -74,6 +81,11 @@ class JustDropCollectionViewCell: UICollectionViewCell {
         addSubview(nameLabel)
         addSubview(priceLabel)
         addSubview(buyNowLabel)
+        
+        
+        backgroundColor = .white
+        
+        
         
      
         imageButton.snp.makeConstraints{

@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     private let homeView = HomeView()
     private let segmentItems: [String] = ["추천","랭킹","발매정보","럭셔리","남성","여성"]
     private var previousIndexPath: IndexPath?
+    let segmentedControl = CustomSegCollectionHandler()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,18 +32,14 @@ class HomeViewController: UIViewController {
         self.view = homeView
         homeView.backgroundColor = .white
         
-        //homeView.menuCollectionView.dataSource = self
 //        homeView.segmentedControl.layer.borderWidth = 1
 //        homeView.segmentedControl.layer.borderColor = UIColor.black.cgColor
-        homeView.customSeg.dataSource = self
-        homeView.customSeg.delegate = self
-        homeView.customSeg.tag = 1
-        homeView.menuCollectionView.tag = 2
-        homeView.menuCollectionView.dataSource = self
-        homeView.justDropCollectionView.tag = 3
-        homeView.justDropCollectionView.dataSource = self
-        homeView.yearEndEssentialCollectionView.tag = 4
-        homeView.yearEndEssentialCollectionView.dataSource = self
+//        setupCollectionView(homeView.customSeg, tag: 1, dataSource: self)
+        homeView.customSeg.dataSource = segmentedControl
+        homeView.customSeg.delegate = segmentedControl
+        setupCollectionView(homeView.menuCollectionView, tag: 2, dataSource: self)
+        setupCollectionView(homeView.justDropCollectionView, tag: 3, dataSource: self)
+        setupCollectionView(homeView.yearEndEssentialCollectionView, tag: 4, dataSource: self)
 //        homeView.segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(searchTextFieldTapped))
         self.homeView.searchTextField.addGestureRecognizer(tapGestureRecognizer)
@@ -53,6 +50,8 @@ class HomeViewController: UIViewController {
             self.collectionView(self.homeView.customSeg, didSelectItemAt: initialIndexPath)
             self.homeView.customSeg.selectItem(at: initialIndexPath, animated: false, scrollPosition: [])
         }
+        
+        homeView.goToTopBtn.addTarget(self, action: #selector (goToTopBtnTapped), for: .touchUpInside)
     }
     
     @objc private func segmentedControlValueChanged(segment: UISegmentedControl) {
@@ -67,34 +66,23 @@ class HomeViewController: UIViewController {
             homeView.divideLine.isHidden = true
             homeView.emptyLabel.isHidden = false
         }
-        
         //updateUnderlinePosition()
-        
     }
     
-//    private func updateUnderlinePosition() {
-//        homeView.underlineView.backgroundColor = .black
-//        let segment = homeView.segmentedControl
-//        let segmentIndex = CGFloat(segment.selectedSegmentIndex)
-//        let segmentWidth = segment.bounds.size.width / CGFloat(segment.numberOfSegments)
-//        let leadingDistance = segmentWidth * segmentIndex
-//
-//    // 아래는 0.3초의 시간 동안 view의 애니메이션을 주면서 밑줄의 constraints를 업데이트 해준다
-//        UIView.animate(withDuration: 0.3, animations: {
-////            self.homeView.underlineView.frame = CGRect(
-////                        x: leadingDistance,
-////                        y: segment.frame.maxY - 2,  // 세그먼트의 바닥에서 밑줄의 위치
-////                        width: segmentWidth,
-////                        height: 2
-////                    )
-//            self.homeView.underlineView.snp.updateConstraints {
-//                $0.bottom.equalTo(segment.snp.bottom)
-//                $0.left.equalTo(segment).inset(leadingDistance)
-//                $0.height.equalTo(2)
-//            }
-//            //self.homeView.segmentedControl.layoutIfNeeded()
-//        })
-//    }
+    @objc private func goToTopBtnTapped(){
+        homeView.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    private func setupCollectionView(_ collectionView: UICollectionView, tag: Int, dataSource: UICollectionViewDataSource?) {
+        if(tag == 1){
+            collectionView.dataSource = dataSource
+            collectionView.delegate = self
+            collectionView.tag = tag
+        }else{
+            collectionView.dataSource = dataSource
+            collectionView.tag = tag
+        }
+    }
     
     @objc private func searchTextFieldTapped() {
         let searchVC = SearchViewController()
@@ -103,24 +91,6 @@ class HomeViewController: UIViewController {
     }
     
 }
-
-//extension HomeViewController: UICollectionViewDataSource{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return HomeMenu.dummy().count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeMenuCollectionViewCell.identifier, for: indexPath) as? HomeMenuCollectionViewCell else { return UICollectionViewCell() }
-//        let list = HomeMenu.dummy()
-//        
-//        cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
-//        cell.titleLabel.text = list[indexPath.row].title
-//
-//        return cell
-//    }
-//    
-//    
-//}
 
 //MARK: - UICollection으로 UISegmentedControl 구현
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -160,9 +130,17 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JustDropCollectionViewCell.identifier, for: indexPath) as? JustDropCollectionViewCell else { return UICollectionViewCell() }
             
             let list = JustDropMenu.dummy()
+            let tabCell = UITapGestureRecognizer(target: self, action: #selector(goToDetailPage))
+            
+            let tabSaveBtn = UITapGestureRecognizer(target: self, action: #selector (goToDetailPage))
+            
+            
+            cell.addGestureRecognizer(tabCell)
             
             cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
             cell.imageButton.backgroundColor = list[indexPath.row].bgColor
+//            cell.imageButton.addTarget(self, action: #selector (goToDetailPage), for: .touchUpInside)
+            cell.saveButton.addGestureRecognizer(tabSaveBtn)
             cell.tradeAmountLabel.text = "거래 " + String(list[indexPath.row].tradeAmount) + "만"
             cell.brandLabel.text = list[indexPath.row].brand
             cell.nameLabel.text = list[indexPath.row].name
@@ -225,13 +203,71 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             break
         }
     }
+    
+    @objc func goToDetailPage(){
+        let vc = ItemDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: false)
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.text = segmentItems[indexPath.item]
-        label.sizeToFit()
-        return CGSize(width: label.frame.width, height: 19)
+        switch collectionView.tag {
+        case 1:
+            let label = UILabel(frame: CGRect.zero)
+            label.text = segmentItems[indexPath.item]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width, height: 19)
+        default:
+            print("error")
+        }
+        return CGSize(width: 0, height: 0)
     }
 }
+
+
+
+//    private func updateUnderlinePosition() {
+//        homeView.underlineView.backgroundColor = .black
+//        let segment = homeView.segmentedControl
+//        let segmentIndex = CGFloat(segment.selectedSegmentIndex)
+//        let segmentWidth = segment.bounds.size.width / CGFloat(segment.numberOfSegments)
+//        let leadingDistance = segmentWidth * segmentIndex
+//
+//    // 아래는 0.3초의 시간 동안 view의 애니메이션을 주면서 밑줄의 constraints를 업데이트 해준다
+//        UIView.animate(withDuration: 0.3, animations: {
+////            self.homeView.underlineView.frame = CGRect(
+////                        x: leadingDistance,
+////                        y: segment.frame.maxY - 2,  // 세그먼트의 바닥에서 밑줄의 위치
+////                        width: segmentWidth,
+////                        height: 2
+////                    )
+//            self.homeView.underlineView.snp.updateConstraints {
+//                $0.bottom.equalTo(segment.snp.bottom)
+//                $0.left.equalTo(segment).inset(leadingDistance)
+//                $0.height.equalTo(2)
+//            }
+//            //self.homeView.segmentedControl.layoutIfNeeded()
+//        })
+//    }
+
+
+//extension HomeViewController: UICollectionViewDataSource{
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return HomeMenu.dummy().count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeMenuCollectionViewCell.identifier, for: indexPath) as? HomeMenuCollectionViewCell else { return UICollectionViewCell() }
+//        let list = HomeMenu.dummy()
+//
+//        cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
+//        cell.titleLabel.text = list[indexPath.row].title
+//
+//        return cell
+//    }
+//
+//
+//}

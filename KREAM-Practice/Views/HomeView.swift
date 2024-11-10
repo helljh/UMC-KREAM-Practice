@@ -12,7 +12,7 @@ import SnapKit
 class HomeView: UIView{
     lazy var scrollView = UIScrollView(frame: self.bounds).then{
         
-        $0.showsVerticalScrollIndicator = true
+        $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false
     }
     
@@ -128,6 +128,14 @@ class HomeView: UIView{
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    let goToTopBtn = UIButton().then{
+        $0.setTitle("^", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.black.cgColor
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -150,7 +158,7 @@ class HomeView: UIView{
 //        addSubview(divideLine)
 //        addSubview(emptyLabel)
         addSubview(underlineView)
-        
+        //addSubview(goToTopBtn)
        
         let justDropStackView = UIStackView(arrangedSubviews: [justDropTitle, UILabel().then{
             $0.heightAnchor.constraint(equalToConstant: 4).isActive = true
@@ -172,17 +180,20 @@ class HomeView: UIView{
         homeContentStackView.spacing = 30
         homeContentStackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(homeContentStackView)
-        
-        
-        
+        scrollView.addSubview(goToTopBtn)
+      
         
         homeContentStackView.snp.makeConstraints{
-            $0.edges.equalTo(scrollView)
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalTo(scrollView)
             $0.width.equalTo(scrollView.snp.width)
         }
         
+        
+        
         scrollView.snp.makeConstraints{
             $0.top.equalTo(customSeg.snp.bottom)
+            
             $0.left.right.bottom.equalToSuperview()
             $0.width.equalTo(self.snp.width)
         }
@@ -260,12 +271,19 @@ class HomeView: UIView{
         }
         
         yearEndStackView.snp.makeConstraints{
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(homeContentStackView.snp.bottom)
             $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         yearEndEssentialCollectionView.snp.makeConstraints{
             $0.height.equalTo(165)
+        }
+        
+        goToTopBtn.snp.makeConstraints{
+            $0.top.equalTo(homeContentStackView.snp.bottom).offset(10)
+            $0.bottom.equalToSuperview().inset(20)
+            $0.right.equalToSuperview().inset(16)
+            $0.size.equalTo(CGSize(width: 20, height: 20))
         }
         
         
