@@ -21,8 +21,9 @@ class JustDropCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let imageButton = UIButton().then{
-        $0.contentMode = .center
+    let itemImage = UIButton().then{
+        $0.contentMode = .scaleAspectFit
+        
         
     }
     
@@ -45,6 +46,7 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     
     let saveButton = UIButton().then{
         $0.setImage(UIImage(named: "save"), for: .normal)
+        $0.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     
     
@@ -76,7 +78,7 @@ class JustDropCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupView(){
-        addSubview(imageButton)
+        addSubview(itemImage)
         addSubview(brandLabel)
         addSubview(nameLabel)
         addSubview(priceLabel)
@@ -88,28 +90,28 @@ class JustDropCollectionViewCell: UICollectionViewCell {
         
         
      
-        imageButton.snp.makeConstraints{
+        itemImage.snp.makeConstraints{
             $0.top.horizontalEdges.equalToSuperview()
             $0.height.width.equalTo(142)
         }
         
-        imageButton.addSubview(tradeAmountLabel)
-        imageButton.addSubview(saveButton)
+        itemImage.addSubview(tradeAmountLabel)
+        itemImage.addSubview(saveButton)
         
         tradeAmountLabel.snp.makeConstraints{
-            $0.top.equalTo(imageButton.snp.top).offset(8)
-            $0.right.equalTo(imageButton.snp.right).inset(8)
+            $0.top.equalTo(itemImage.snp.top).offset(8)
+            $0.right.equalTo(itemImage.snp.right).inset(8)
         }
         
         saveButton.snp.makeConstraints{
-            $0.right.equalTo(imageButton.snp.right).inset(10)
-            $0.bottom.equalTo(imageButton.snp.bottom).inset(10)
+            $0.right.equalTo(itemImage.snp.right).inset(10)
+            $0.bottom.equalTo(itemImage.snp.bottom).inset(10)
             $0.width.equalTo(22)
             $0.height.equalTo(20)
         }
         
         brandLabel.snp.makeConstraints{
-            $0.top.equalTo(imageButton.snp.bottom).offset(8)
+            $0.top.equalTo(itemImage.snp.bottom).offset(8)
             $0.left.equalToSuperview().offset(4)
         }
         

@@ -23,20 +23,14 @@ class JustDropCollectionHandler:NSObject, UICollectionViewDataSource, UICollecti
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JustDropCollectionViewCell.identifier, for: indexPath) as? JustDropCollectionViewCell else { return UICollectionViewCell() }
         
         let list = JustDropMenu.dummy()
-        let tabCell = UITapGestureRecognizer(target: self, action: #selector(goToDetailPage))
-        
-        let tabSaveBtn = UITapGestureRecognizer(target: self, action: #selector (goToDetailPage))
         
         
-        cell.addGestureRecognizer(tabCell)
-        
-        cell.imageButton.setImage(list[indexPath.row].image, for: .normal)
-        cell.imageButton.backgroundColor = list[indexPath.row].bgColor
-//            cell.imageButton.addTarget(self, action: #selector (goToDetailPage), for: .touchUpInside)
-        cell.saveButton.addGestureRecognizer(tabSaveBtn)
+        cell.itemImage.setImage(list[indexPath.row].image, for: .normal)
+        cell.itemImage.backgroundColor = list[indexPath.row].bgColor
         cell.tradeAmountLabel.text = "거래 " + String(list[indexPath.row].tradeAmount) + "만"
         cell.brandLabel.text = list[indexPath.row].brand
         cell.nameLabel.text = list[indexPath.row].name
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         if let formattedPrice = formatter.string(from: NSNumber(value: list[indexPath.row].price)){
@@ -48,7 +42,15 @@ class JustDropCollectionHandler:NSObject, UICollectionViewDataSource, UICollecti
         return cell
     }
     
-    @objc func goToDetailPage(){
+//    @objc func goToDetailPage(){
+//        let vc = ItemDetailViewController()
+//        vc.hidesBottomBarWhenPushed = true
+//        viewController?.navigationController?.pushViewController(vc, animated: false)
+//    }
+//    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+
         let vc = ItemDetailViewController()
         vc.hidesBottomBarWhenPushed = true
         viewController?.navigationController?.pushViewController(vc, animated: false)

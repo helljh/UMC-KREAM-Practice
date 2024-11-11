@@ -19,7 +19,7 @@ class ItemDetailViewController: UIViewController {
         itemDetailView.itemColorCollectionView.dataSource = self
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(purchaseSheetModalPop))
-        itemDetailView.purchaseBtnView.addGestureRecognizer(tapGestureRecognizer)
+        itemDetailView.purchaseBtnview.addGestureRecognizer(tapGestureRecognizer)
         
         setupNavigationBar()
     }

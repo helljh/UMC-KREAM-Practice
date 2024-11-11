@@ -65,60 +65,17 @@ class ItemDetailView: UIView {
         $0.textColor = .black
     }
     
-    let purchaseBtnView = UIView().then{
-        $0.backgroundColor = UIColor(named: "PurchaseBtnColor")
-        $0.layer.cornerRadius = 10
-        //$0.frame = CGRect(x: 0, y: 0, width: 147, height: 49)
-    }
+    let purchaseBtnview = ItemDetailButton(buttonTextColor: .white, buttonLabelColor: UIColor(named: "PurchaseBtnLabel")!, backgroundColor: UIColor(named: "PurchaseBtnColor")!)
+
     
-    let purchaseText = UILabel().then{
-        $0.text = "구매"
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
-        $0.textColor = .white
-    }
-    
-    let purchaseLabel = UILabel().then{
-        $0.text = "즉시 구매가"
-        $0.font = .systemFont(ofSize: 10, weight: .semibold)
-        $0.textColor = UIColor(named: "PurchaseBtnLabel")
-    }
-    
-    let purchasePrice = UILabel().then{
-        $0.text = "34,5000"
-        $0.font = .systemFont(ofSize: 13, weight: .semibold)
-        $0.textColor = .white
-    }
-    
-    let sellText = UILabel().then{
-        $0.text = "판매"
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
-        $0.textColor = .white
-    }
-    
-    let sellLabel = UILabel().then{
-        $0.text = "즉시 판매가"
-        $0.font = .systemFont(ofSize: 10, weight: .semibold)
-        $0.textColor = UIColor(named: "SellBtnLabel")
-    }
-    
-    let sellprice = UILabel().then{
-        $0.text = "39,6000"
-        $0.font = .systemFont(ofSize: 13, weight: .semibold)
-        $0.textColor = .white
-    }
-    
-    
-    
-    let sellBtnView = UIView().then{
-        $0.backgroundColor = UIColor(named: "SellBtnColor")
-        $0.layer.cornerRadius = 10
-        //$0.frame = CGRect(x: 0, y: 0, width: 147, height: 49)
-    }
+    let sellBtnView = ItemDetailButton(buttonTextColor: .white, buttonLabelColor: UIColor(named: "SellBtnLabel")!, backgroundColor: UIColor(named: "SellBtnColor")!)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
         setUpView()
+        purchaseBtnview.configure(text: "구매", label: "즉시 구매가", price: "34,5000")
+        sellBtnView.configure(text: "판매", label: "즉시 판매가", price: "39,6000")
     }
     
     required init?(coder: NSCoder) {
@@ -184,47 +141,10 @@ class ItemDetailView: UIView {
             $0.left.equalTo(16)
         }
         
-        addSubview(purchaseBtnView)
-        purchaseBtnView.addSubview(purchaseText)
-        purchaseBtnView.addSubview(purchaseLabel)
-        purchaseBtnView.addSubview(purchasePrice)
-        
-        purchaseText.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(15)
-            $0.left.equalToSuperview().offset(10)
-        }
-        
-        purchasePrice.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(8)
-            $0.left.equalTo(purchaseText.snp.right).offset(21)
-        }
-        
-        purchaseLabel.snp.makeConstraints{
-            $0.top.equalTo(purchasePrice.snp.bottom).offset(2)
-            $0.left.equalTo(purchaseText.snp.right).offset(21)
-        }
-        
+        addSubview(purchaseBtnview)
         addSubview(sellBtnView)
-        sellBtnView.addSubview(sellText)
-        sellBtnView.addSubview(sellLabel)
-        sellBtnView.addSubview(sellprice)
-        
-        sellText.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(15)
-            $0.left.equalToSuperview().offset(10)
-        }
-        
-        sellprice.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(8)
-            $0.left.equalTo(sellText.snp.right).offset(21)
-        }
-        
-        sellLabel.snp.makeConstraints{
-            $0.top.equalTo(sellprice.snp.bottom).offset(2)
-            $0.left.equalTo(sellText.snp.right).offset(21)
-        }
-        
-        purchaseBtnView.snp.makeConstraints{
+
+        purchaseBtnview.snp.makeConstraints{
             $0.top.equalTo(divideLine.snp.bottom).offset(8)
             $0.left.equalTo(scrapButton.snp.right).offset(19)
             $0.height.equalTo(49)
@@ -234,7 +154,7 @@ class ItemDetailView: UIView {
         
         sellBtnView.snp.makeConstraints{
             $0.top.equalTo(divideLine.snp.bottom).offset(8)
-            $0.left.equalTo(purchaseBtnView.snp.right).offset(8)
+            $0.left.equalTo(purchaseBtnview.snp.right).offset(8)
             $0.height.equalTo(49)
             $0.width.equalTo(147)
         }
