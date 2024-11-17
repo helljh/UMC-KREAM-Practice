@@ -10,6 +10,8 @@ class MyViewController: UIViewController {
         
         // 버튼 클릭 이벤트 연결
         myView.profileManageBtn.addTarget(self, action: #selector(manageBtnTapped), for: .touchUpInside)
+        
+        myView.nameLabel.text = KeyChainHelper.read(forService: "kakaologin") ?? "지누/iOS 챌린저"
     }
     
     @objc

@@ -38,7 +38,7 @@ class MyView: UIView{
         $0.clipsToBounds = true
     }
     
-    private let nameLabel = UILabel().then{
+    public lazy var nameLabel = UILabel().then{
         $0.text = "지누/iOS 챌린저"
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
         $0.textColor = .black

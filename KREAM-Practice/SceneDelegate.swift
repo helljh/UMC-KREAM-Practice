@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        KakaoSDK.initSDK(appKey: "4890e2932b2cf8fc976f7e149cdc37ff")
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
@@ -23,7 +26,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
 
     }
-
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        // URLContexts에서 첫 번째 URL 가져오기
+        guard let url = URLContexts.first?.url else { return }
+        
+        // Custom URL Scheme인지 확인
+        if url.scheme == "kakao4890e2932b2cf8fc976f7e149cdc37ff" {
+            print("Received Redirect URL: \(url.absoluteString)")
+            
+            // URLComponents로 쿼리 파라미터 추출
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            
+            // Authorization Code 가져오기
+            if let code = components?.queryItems?.first(where: { $0.name == "code" })?.value {
+                print("Authorization Code: \(code)")
+                
+                // Access Token 요청
+                KakaoLoginHelper().requestAccessToken(authCode: code)
+            } else if let error = components?.queryItems?.first(where: { $0.name == "error" })?.value {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
