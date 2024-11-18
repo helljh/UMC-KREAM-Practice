@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao4890e2932b2cf8fc976f7e149cdc37ff://oauth</string>
+				<string>kakao4890e2932b2cf8fc976f7e149cdc37ff</string>
 			</array>
 		</dict>
 	</array>
@@ -17,6 +17,11 @@
 	<array>
 		<string>kakaokompassauth</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

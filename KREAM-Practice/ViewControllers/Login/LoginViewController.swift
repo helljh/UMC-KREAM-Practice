@@ -71,36 +71,39 @@ class LoginViewController: UIViewController {
                 print(error)
             }
             else {
-                print("loginWithKakaoAccount() success.")
-                UserApi.shared.me() {(user, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    else {
-                        if let user = user{
-                            let name: String = (user.kakaoAccount?.profile?.nickname)!
-                            if(KeyChainHelper.create(token: oauthToken!.accessToken, forAccount: name)){
+                if let accessToken = oauthToken?.accessToken {
+                    KakaoLoginHelper().getKakaoUserInfo(accessToken: accessToken){ kakaoName in
+                        if let name = kakaoName{
+                            
+                            let isKeychainSaved = KeyChainHelper.create(token: accessToken, forAccount: name)
+                            
+                            if(isKeychainSaved){
                                 mainVC.modalPresentationStyle = .fullScreen
                                 self.present(mainVC, animated: true)
                             }
-                            
                         }
-                        
-//                        // 성공 시 동작 구현
-//                        if(KeyChainHelper.create(token: oauthToken?.accessToken ?? "", forAccount: user?.kakaoAccount?.profile?.nickname ?? "")){
-//                            mainVC.modalPresentationStyle = .fullScreen
-//                            self.present(mainVC, animated: true)
-//                        }
                     }
                 }
-                
-                
             }
         }
-
+        
     }
     
 }
 
 
-
+//UserApi.shared.me() {(user, error) in
+//    if let error = error {
+//        print(error)
+//    }
+//    else {
+//        if let user = user{
+//            let name: String = (user.kakaoAccount?.profile?.nickname)!
+//            if(KeyChainHelper.create(token: oauthToken!.accessToken, forAccount: name)){
+//                mainVC.modalPresentationStyle = .fullScreen
+//                self.present(mainVC, animated: true)
+//            }
+//
+//        }
+//    }
+//}

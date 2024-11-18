@@ -28,6 +28,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        for context in URLContexts {
+                print("url: \(context.url.absoluteURL)")
+                print("scheme: \(context.url.scheme)")
+                print("host: \(context.url.host)")
+                print("path: \(context.url.path)")
+                print("components: \(context.url.pathComponents)")
+              }
         // URLContexts에서 첫 번째 URL 가져오기
         guard let url = URLContexts.first?.url else { return }
         

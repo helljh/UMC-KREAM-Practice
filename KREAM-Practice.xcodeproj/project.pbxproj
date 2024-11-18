@@ -18,6 +18,7 @@
 		D1495E0D2CE892C8003F33C4 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D1495E0C2CE892C8003F33C4 /* KakaoSDK */; };
 		D1495E102CE8CC61003F33C4 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E0F2CE8CC45003F33C4 /* KeyChainHelper.swift */; };
 		D1495E122CE9A5EE003F33C4 /* KakaoLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E112CE9A5E9003F33C4 /* KakaoLoginHelper.swift */; };
+		D1495E142CEAC461003F33C4 /* KakaoUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1495E132CEAC454003F33C4 /* KakaoUserModel.swift */; };
 		D158973B2CA2CC3E00CEDA2A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D158973A2CA2CC3E00CEDA2A /* MainViewController.swift */; };
 		D158973E2CA2CC8E00CEDA2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D158973D2CA2CC8E00CEDA2A /* HomeViewController.swift */; };
 		D15897402CA2CC9800CEDA2A /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D158973F2CA2CC9800CEDA2A /* StyleViewController.swift */; };
@@ -71,6 +72,7 @@
 		D14279552CA128E200D6853C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D1495E0F2CE8CC45003F33C4 /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
 		D1495E112CE9A5E9003F33C4 /* KakaoLoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginHelper.swift; sourceTree = "<group>"; };
+		D1495E132CEAC454003F33C4 /* KakaoUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoUserModel.swift; sourceTree = "<group>"; };
 		D158973A2CA2CC3E00CEDA2A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D158973D2CA2CC8E00CEDA2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D158973F2CA2CC9800CEDA2A /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		D142794F2CA1287200D6853C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1495E132CEAC454003F33C4 /* KakaoUserModel.swift */,
 				D1DAAEB02CE08A440044BF02 /* ItemSizeBtnModel.swift */,
 				D1DAAEA82CE06FAC0044BF02 /* ItemDetailColorModel.swift */,
 				D1DAAE9E2CD481660044BF02 /* YearEndEssentialModel.swift */,
@@ -355,6 +358,7 @@
 				D15897402CA2CC9800CEDA2A /* StyleViewController.swift in Sources */,
 				D1DAAEB32CE08AEA0044BF02 /* ItemSizeCollectionViewCell.swift in Sources */,
 				D1E1AB7B2CB6B1EE009009D0 /* SearchViewController.swift in Sources */,
+				D1495E142CEAC461003F33C4 /* KakaoUserModel.swift in Sources */,
 				D1DAAEA72CE06F590044BF02 /* ItemColorCollectionViewCell.swift in Sources */,
 				D15897472CA2CCC200CEDA2A /* MyViewController.swift in Sources */,
 				D14279562CA128E200D6853C /* LoginView.swift in Sources */,
