@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -58,6 +58,15 @@
 		D1E1AB7B2CB6B1EE009009D0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7A2CB6B1EE009009D0 /* SearchViewController.swift */; };
 		D1E1AB7D2CBA3919009009D0 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */; };
 		D1E1AB7F2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E1AB7E2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift */; };
+		D1ED84EE2CF0520900315447 /* SearchRecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED84ED2CF0520900315447 /* SearchRecommendCollectionViewCell.swift */; };
+		D1ED84F02CF0628700315447 /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED84EF2CF0628700315447 /* SearchDetailView.swift */; };
+		D1ED84F22CF062F800315447 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED84F12CF062F800315447 /* SearchDetailViewController.swift */; };
+		D1ED84F92CF06CF100315447 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = D1ED84F82CF06CF100315447 /* CombineMoya */; };
+		D1ED84FB2CF06CF100315447 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D1ED84FA2CF06CF100315447 /* Moya */; };
+		D1ED84FD2CF06CF100315447 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = D1ED84FC2CF06CF100315447 /* ReactiveMoya */; };
+		D1ED84FF2CF06CF100315447 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = D1ED84FE2CF06CF100315447 /* RxMoya */; };
+		D1ED85012CF06FC200315447 /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED85002CF06FBD00315447 /* SearchResponseModel.swift */; };
+		D1ED85032CF077DB00315447 /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ED85022CF077DB00315447 /* SearchResultsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,16 +119,29 @@
 		D1E1AB7A2CB6B1EE009009D0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		D1E1AB7E2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1ED84ED2CF0520900315447 /* SearchRecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1ED84EF2CF0628700315447 /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
+		D1ED84F12CF062F800315447 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		D1ED85002CF06FBD00315447 /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
+		D1ED85022CF077DB00315447 /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D1ED84F32CF06C7F00315447 /* Network */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Network; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D14279352CA127FD00D6853C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1ED84FD2CF06CF100315447 /* ReactiveMoya in Frameworks */,
 				D158974C2CA2D72E00CEDA2A /* SnapKit in Frameworks */,
 				D1495E0D2CE892C8003F33C4 /* KakaoSDK in Frameworks */,
+				D1ED84FB2CF06CF100315447 /* Moya in Frameworks */,
 				D1495E0A2CE8928E003F33C4 /* Alamofire in Frameworks */,
+				D1ED84F92CF06CF100315447 /* CombineMoya in Frameworks */,
+				D1ED84FF2CF06CF100315447 /* RxMoya in Frameworks */,
 				D1D746832CA68E7D003CAE50 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +168,7 @@
 		D142793A2CA127FD00D6853C /* KREAM-Practice */ = {
 			isa = PBXGroup;
 			children = (
+				D1ED84F32CF06C7F00315447 /* Network */,
 				D1DAAEC22CE199400044BF02 /* Components */,
 				D198A0F62CAFE42500DAE390 /* Cells */,
 				D14279522CA1288B00D6853C /* ViewControllers */,
@@ -163,6 +186,7 @@
 		D142794F2CA1287200D6853C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1ED85002CF06FBD00315447 /* SearchResponseModel.swift */,
 				D1495E132CEAC454003F33C4 /* KakaoUserModel.swift */,
 				D1DAAEB02CE08A440044BF02 /* ItemSizeBtnModel.swift */,
 				D1DAAEA82CE06FAC0044BF02 /* ItemDetailColorModel.swift */,
@@ -187,6 +211,7 @@
 				D1E1AB782CB6B17B009009D0 /* SearchView.swift */,
 				D1DAAEA42CE06CE70044BF02 /* ItemDetailView.swift */,
 				D1DAAEAE2CE081DC0044BF02 /* PurchaseSheetView.swift */,
+				D1ED84EF2CF0628700315447 /* SearchDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +231,7 @@
 				D1E1AB7C2CBA3919009009D0 /* CustomSegmentedControl.swift */,
 				D1DAAEA22CDF4B010044BF02 /* ItemDetailViewController.swift */,
 				D1DAAEAC2CE081490044BF02 /* PurchaseSheetController.swift */,
+				D1ED84F12CF062F800315447 /* SearchDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -230,6 +256,8 @@
 				D1DAAEA02CD482CD0044BF02 /* YearEndEssentialCollectionViewCell.swift */,
 				D1DAAEA62CE06F590044BF02 /* ItemColorCollectionViewCell.swift */,
 				D1DAAEB22CE08AEA0044BF02 /* ItemSizeCollectionViewCell.swift */,
+				D1ED84ED2CF0520900315447 /* SearchRecommendCollectionViewCell.swift */,
+				D1ED85022CF077DB00315447 /* SearchResultsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -269,6 +297,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				D1ED84F32CF06C7F00315447 /* Network */,
+			);
 			name = "KREAM-Practice";
 			productName = "KREAM-Practice";
 			productReference = D14279382CA127FD00D6853C /* KREAM-Practice.app */;
@@ -303,6 +334,7 @@
 				D1D746812CA68E7D003CAE50 /* XCRemoteSwiftPackageReference "Then" */,
 				D1495E082CE8928E003F33C4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D1495E0B2CE892C8003F33C4 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = D14279392CA127FD00D6853C /* Products */;
 			projectDirPath = "";
@@ -332,6 +364,7 @@
 			files = (
 				D15897492CA2D68200CEDA2A /* MyView.swift in Sources */,
 				D1495E122CE9A5EE003F33C4 /* KakaoLoginHelper.swift in Sources */,
+				D1ED85032CF077DB00315447 /* SearchResultsTableViewCell.swift in Sources */,
 				D14279402CA127FD00D6853C /* LoginViewController.swift in Sources */,
 				D1DAAEAD2CE081490044BF02 /* PurchaseSheetController.swift in Sources */,
 				D1DAAE9F2CD481800044BF02 /* YearEndEssentialModel.swift in Sources */,
@@ -339,6 +372,7 @@
 				D198A0F52CAFDE9900DAE390 /* SavedItemModel.swift in Sources */,
 				D1DAAE9D2CD3D9E90044BF02 /* JustDropMenu.swift in Sources */,
 				D1E1AB7F2CBABDE6009009D0 /* CustomSegCollectionViewCell.swift in Sources */,
+				D1ED84F02CF0628700315447 /* SearchDetailView.swift in Sources */,
 				D1DAAEB12CE08A550044BF02 /* ItemSizeBtnModel.swift in Sources */,
 				D14279542CA128B200D6853C /* LoginModel.swift in Sources */,
 				D1DAAEA92CE06FB50044BF02 /* ItemDetailColorModel.swift in Sources */,
@@ -349,11 +383,14 @@
 				D15897522CA3AEE100CEDA2A /* ProfileManageView.swift in Sources */,
 				D142793C2CA127FD00D6853C /* AppDelegate.swift in Sources */,
 				D198A0FA2CB164AC00DAE390 /* UserDefaultsModel.swift in Sources */,
+				D1ED84EE2CF0520900315447 /* SearchRecommendCollectionViewCell.swift in Sources */,
 				D1DAAEBB2CE17FAD0044BF02 /* CustomSegCollectionHandler.swift in Sources */,
+				D1ED84F22CF062F800315447 /* SearchDetailViewController.swift in Sources */,
 				D1DAAEC12CE189250044BF02 /* YearEndCollectionHandler.swift in Sources */,
 				D1DAAEBD2CE186C00044BF02 /* MenuCollectionHandler.swift in Sources */,
 				D1E1AB772CB6A6FB009009D0 /* HomeMenu.swift in Sources */,
 				D1E1AB792CB6B17B009009D0 /* SearchView.swift in Sources */,
+				D1ED85012CF06FC200315447 /* SearchResponseModel.swift in Sources */,
 				D158973B2CA2CC3E00CEDA2A /* MainViewController.swift in Sources */,
 				D15897402CA2CC9800CEDA2A /* StyleViewController.swift in Sources */,
 				D1DAAEB32CE08AEA0044BF02 /* ItemSizeCollectionViewCell.swift in Sources */,
@@ -619,6 +656,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -641,6 +686,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D1D746812CA68E7D003CAE50 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		D1ED84F82CF06CF100315447 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		D1ED84FA2CF06CF100315447 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		D1ED84FC2CF06CF100315447 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		D1ED84FE2CF06CF100315447 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1ED84F72CF06CF100315447 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

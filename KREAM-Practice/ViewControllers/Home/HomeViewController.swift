@@ -69,7 +69,9 @@ class HomeViewController: UIViewController {
     @objc private func searchTextFieldTapped() {
         let searchVC = SearchViewController()
         
-        navigationController?.pushViewController(searchVC, animated: false)
+        searchVC.modalPresentationStyle = .overFullScreen
+        present(searchVC, animated: true)
+        
     }
     
     private func setUpDatasourceDelegate(){

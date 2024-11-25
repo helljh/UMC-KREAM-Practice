@@ -1,18 +1,14 @@
 //
-//  SearchView.swift
+//  SearchDetailView.swift
 //  KREAM-Practice
 //
-//  Created by 허준호 on 10/9/24.
+//  Created by 허준호 on 11/22/24.
 //
 
 import UIKit
-import Then
-import SnapKit
 
-class SearchView: UIView {
+class SearchDetailView: UIView {
 
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,7 +20,9 @@ class SearchView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    let backButton = UIButton().then{
+        $0.setImage(UIImage(named: "navBackImage"), for:.normal)
+    }
     let searchTextField = UITextField().then{
         $0.placeholder = "브랜드, 상품, 프로필, 태그 등"
         $0.font = .systemFont(ofSize: 13.5)
@@ -41,23 +39,9 @@ class SearchView: UIView {
         
     }
     
-    let searchRecommendLabel = UILabel().then{
-        $0.text = "추천 검색어"
-        $0.font = .systemFont(ofSize: 15, weight: .bold)
-        $0.textColor = .black
-    }
-    
-    let searchRecommendCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then{
-        $0.minimumInteritemSpacing = 8
-        $0.minimumLineSpacing = 12
-        $0.scrollDirection = .vertical
-        
-    }).then{
-        $0.isScrollEnabled = false
-        $0.showsHorizontalScrollIndicator = false
-        $0.showsVerticalScrollIndicator = false
-        $0.backgroundColor = .clear
-        $0.register(SearchRecommendCollectionViewCell.self, forCellWithReuseIdentifier: SearchRecommendCollectionViewCell.identifier)
+    public lazy var searchResultsTableView = UITableView().then{
+        $0.register(SearchResultsTableViewCell.self, forCellReuseIdentifier: SearchResultsTableViewCell.identifier)
+        $0.separatorStyle = .singleLine
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -72,21 +56,24 @@ class SearchView: UIView {
     }
     
     private func addStack(){
-        [searchTextField, cancelButton].forEach{searchStackView.addArrangedSubview($0)}
+        [backButton, searchTextField, cancelButton].forEach{searchStackView.addArrangedSubview($0)}
     }
     
     private func addConponents(){
         addSubview(searchStackView)
-        addSubview(searchRecommendLabel)
-        addSubview(searchRecommendCollectionView)
-        
+        addSubview(searchResultsTableView)
     }
     
     private func constraints(){
         
+        backButton.snp.makeConstraints{
+            $0.width.equalTo(24)
+            
+        }
+        
         searchTextField.snp.makeConstraints{
-            $0.width.equalTo(306)
-            $0.height.equalTo(36)
+            $0.width.equalTo(268)
+            $0.height.equalTo(39)
         }
         
         searchStackView.snp.makeConstraints{
@@ -95,19 +82,10 @@ class SearchView: UIView {
             $0.right.equalToSuperview().inset(22)
         }
         
-        searchRecommendLabel.snp.makeConstraints{
-            $0.top.equalTo(searchStackView.snp.bottom).offset(41)
-            $0.left.equalToSuperview().offset(16)
-        }
-        
-        searchRecommendCollectionView.snp.makeConstraints{
-            $0.top.equalTo(searchRecommendLabel.snp.bottom).offset(11)
-            $0.horizontalEdges.equalToSuperview().inset(15)
-            //$0.width.equalTo(329)
-            $0.height.equalTo(76)
+        searchResultsTableView.snp.makeConstraints{
+            $0.top.equalTo(searchStackView.snp.bottom).offset(31)
+            $0.left.right.bottom.equalToSuperview()
         }
     }
-    
-    
     
 }
