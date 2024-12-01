@@ -87,5 +87,4 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         return CGSize(width: cellWidth, height: 32) // 높이는 고정 값
 
     }
-
 }

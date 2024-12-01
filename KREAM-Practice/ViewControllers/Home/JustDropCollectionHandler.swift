@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class JustDropCollectionHandler:NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -23,9 +24,9 @@ class JustDropCollectionHandler:NSObject, UICollectionViewDataSource, UICollecti
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JustDropCollectionViewCell.identifier, for: indexPath) as? JustDropCollectionViewCell else { return UICollectionViewCell() }
         
         let list = JustDropMenu.dummy()
+         
         
-        
-        cell.itemImage.setImage(list[indexPath.row].image, for: .normal)
+        cell.loadImage(from: list[indexPath.row].imageURL)
         cell.itemImage.backgroundColor = list[indexPath.row].bgColor
         cell.tradeAmountLabel.text = "거래 " + String(list[indexPath.row].tradeAmount) + "만"
         cell.brandLabel.text = list[indexPath.row].brand

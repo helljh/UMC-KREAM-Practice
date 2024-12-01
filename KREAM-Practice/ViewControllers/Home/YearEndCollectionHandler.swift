@@ -17,7 +17,7 @@ class YearEndCollectionHandler: NSObject, UICollectionViewDataSource, UICollecti
         
         let list = YearEndEssentialModel.dummy()
         
-        cell.imageView.image = list[indexPath.row].image
+        cell.loadImage(from: list[indexPath.row].imageURL)
         cell.idLabel.text = list[indexPath.row].id
         
         return cell

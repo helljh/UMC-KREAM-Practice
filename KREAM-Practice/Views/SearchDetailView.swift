@@ -76,6 +76,10 @@ class SearchDetailView: UIView {
             $0.height.equalTo(39)
         }
         
+        cancelButton.snp.makeConstraints{
+            $0.width.equalTo(25)
+        }
+        
         searchStackView.snp.makeConstraints{
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(7)
             $0.left.equalToSuperview().offset(16)

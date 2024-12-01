@@ -86,9 +86,11 @@ extension SearchDetailViewController : UITableViewDataSource{
     }
     
     
+    
+    
 }
 
-extension SearchDetailViewController: UISearchTextFieldDelegate {
+extension SearchDetailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text, text.isEmpty == false{
             

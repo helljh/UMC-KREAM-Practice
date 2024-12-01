@@ -39,6 +39,7 @@ class SearchView: UIView {
         $0.titleLabel?.font = .systemFont(ofSize: 14)
         $0.setTitleColor(.black, for: .normal)
         
+        
     }
     
     let searchRecommendLabel = UILabel().then{
@@ -48,9 +49,9 @@ class SearchView: UIView {
     }
     
     let searchRecommendCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then{
-        $0.minimumInteritemSpacing = 8
         $0.minimumLineSpacing = 12
-        $0.scrollDirection = .vertical
+        $0.minimumInteritemSpacing = 8
+        $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
     }).then{
         $0.isScrollEnabled = false
@@ -89,6 +90,10 @@ class SearchView: UIView {
             $0.height.equalTo(36)
         }
         
+        cancelButton.snp.makeConstraints{
+            $0.width.equalTo(25)
+        }
+        
         searchStackView.snp.makeConstraints{
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(7)
             $0.left.equalToSuperview().offset(16)
@@ -102,8 +107,9 @@ class SearchView: UIView {
         
         searchRecommendCollectionView.snp.makeConstraints{
             $0.top.equalTo(searchRecommendLabel.snp.bottom).offset(11)
-            $0.horizontalEdges.equalToSuperview().inset(15)
-            //$0.width.equalTo(329)
+            $0.left.equalToSuperview().offset(15)
+            $0.right.equalToSuperview().inset(30)
+            //$0.width.equalTo(332)
             $0.height.equalTo(76)
         }
     }

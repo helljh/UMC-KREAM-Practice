@@ -21,10 +21,9 @@ class JustDropCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let itemImage = UIButton().then{
+    let itemImage = UIImageView().then{
         $0.contentMode = .scaleAspectFit
-        
-        
+        $0.isUserInteractionEnabled = true
     }
     
     
@@ -75,6 +74,12 @@ class JustDropCollectionViewCell: UICollectionViewCell {
         $0.text = "즉시 구매가"
         $0.font = .systemFont(ofSize: 10)
         $0.textColor = UIColor(named: "A2A2A2")
+    }
+    
+    public func loadImage(from url: String) {
+        if let imageURL = URL(string: url) {
+            itemImage.kf.setImage(with: imageURL)
+        }
     }
     
     private func setupView(){

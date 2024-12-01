@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 class YearEndEssentialCollectionViewCell: UICollectionViewCell {
     
@@ -30,6 +31,12 @@ class YearEndEssentialCollectionViewCell: UICollectionViewCell {
     let idLabel = UILabel().then{
         $0.font = .systemFont(ofSize: 12)
         $0.textColor = .white
+    }
+    
+    public func loadImage(from url: String) {
+        if let imageURL = URL(string: url) {
+            imageView.kf.setImage(with: imageURL)
+        }
     }
     
     private func setupView() {

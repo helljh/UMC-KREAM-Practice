@@ -70,7 +70,8 @@ class SearchRecommendCollectionViewCell: UICollectionViewCell {
         }
         
         textContainer.snp.makeConstraints{
-            $0.edges.equalToSuperview()
+            $0.top.left.equalToSuperview()
+            
             
         }
     }
